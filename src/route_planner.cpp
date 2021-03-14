@@ -12,7 +12,6 @@ RoutePlanner::RoutePlanner(RouteModel &model, float start_x, float start_y, floa
     // Store the nodes in the RoutePlanner's start_node and end_node attributes.
     this->start_node = &m_Model.FindClosestNode(start_x, start_y);
     this->end_node = &m_Model.FindClosestNode(end_x, end_y);
-
 }
 
 
@@ -56,12 +55,10 @@ std::vector<RouteModel::Node> RoutePlanner::ConstructFinalPath(RouteModel::Node 
       	distance += current_node->distance(*(current_node->parent));
         current_node = current_node->parent;
     }
-
     distance *= m_Model.MetricScale();
     path_found.push_back(*current_node);
     std::reverse(path_found.begin(), path_found.end());
     return path_found;
-
 }
 
 
