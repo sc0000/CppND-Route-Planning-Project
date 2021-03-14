@@ -38,9 +38,7 @@ void RoutePlanner::AddNeighbors(RouteModel::Node *current_node) {
 // Sort the open list to start with the node with the lowest h-value. Create a pointer to this node and remove it from the list.
 RouteModel::Node *RoutePlanner::NextNode() {
     std::sort(open_list.begin(), open_list.end(), [] (const RouteModel::Node* node1, const RouteModel::Node* node2) -> bool {
-        float f1 = node1->g_value + node1->h_value;
-        float f2 = node2->g_value + node2->h_value;
-        return (f1 < f2);
+        return (node1->g_value + node1->h_value < node2->g_value + node2->h_value);
     });
     RouteModel::Node* next_node = open_list[0];
     open_list.erase(open_list.begin());
