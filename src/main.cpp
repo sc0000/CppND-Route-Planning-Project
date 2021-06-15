@@ -45,9 +45,8 @@ void Check(float& coo)
 
 }
 
-void UserInput()
+void UserInput(float& start_x, float& start_y, float& end_x, float& end_y)
 {
-    float start_x, start_y, end_x, end_y;
     std::cout << "Enter start and end coordinates between 0 and 100:";
     std::cout << "\nStart x value: ";
 	Check(start_x);
@@ -85,7 +84,8 @@ int main(int argc, const char **argv)
     }
     
     // Coordinates; User input.
-    UserInput();
+    float start_x, start_y, end_x, end_y;
+    UserInput(start_x, start_y, end_x, end_y);
 
     // Build Model.
     RouteModel model{osm_data};
