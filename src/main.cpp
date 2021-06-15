@@ -10,6 +10,8 @@
 
 using namespace std::experimental;
 
+
+
 static std::optional<std::vector<std::byte>> ReadFile(const std::string &path)
 {   
     std::ifstream is{path, std::ios::binary | std::ios::ate};
@@ -25,6 +27,36 @@ static std::optional<std::vector<std::byte>> ReadFile(const std::string &path)
     if( contents.empty() )
         return std::nullopt;
     return std::move(contents);
+}
+
+void Check(float& coo)
+{
+	float temp;
+	while (1)
+	{
+		std::cin >> temp;
+		if (temp >= 0.f && temp <= 100.f)
+		{
+			coo = temp;
+			break;
+		}
+		std::cout << "Invalid input. Try again!\n";
+	}
+
+}
+
+void UserInput()
+{
+    float start_x, start_y, end_x, end_y;
+    std::cout << "Enter start and end coordinates between 0 and 100:";
+    std::cout << "\nStart x value: ";
+	Check(start_x);
+    std::cout << "\nStart y value: ";
+	Check(start_y);
+    std::cout << "\nEnd x value: ";
+	Check(end_x);
+	std::cout << "\nEnd y value: ";
+	Check(end_y);
 }
 
 int main(int argc, const char **argv)
@@ -53,16 +85,8 @@ int main(int argc, const char **argv)
     }
     
     // Coordinates; User input.
-    float start_x, start_y, end_x, end_y;
-    std::cout << "Enter start and end coordinates between 0 and 100:";
-    std::cout << "\nStart x value; ";
-    std::cin >> start_x;
-    std::cout << "\nStart y value; ";
-    std::cin >> start_y;
-    std::cout << "\nEnd x value; ";
-    std::cin >> end_x;
-    std::cout << "\nEnd y value; ";
-    std::cin >> end_y;    
+    UserInput();
+
     // Build Model.
     RouteModel model{osm_data};
 
